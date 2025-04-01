@@ -1,0 +1,13 @@
+# Ignore any LaTeX supporting files
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.xml
+*.bbl
+*.bcf
+*.blg
+*.bbl-SAVE-ERROR
+*.toc
+*.synctex(busy)
+*.pdf

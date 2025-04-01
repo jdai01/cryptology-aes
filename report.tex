@@ -1,0 +1,59 @@
+\documentclass{thesis}
+
+\title{Advanced Encryption Standard}
+
+\subtitle{
+    Cryptology Report
+}
+
+\author{
+    Jiahui Dai (00153014)\\
+    Yana Halamakh (00151596)\\
+    Zeynep Melisa Akyol (00138182)
+}
+
+\supervisor{Prof. Katherine Roegner}
+
+
+\begin{document}
+
+% Cover Page (No page number)
+\pagenumbering{gobble}  % Hide page numbering
+
+% \input{coverpage}
+\maketitle
+
+
+
+\include{declaration.tex}
+
+% Abstract
+\pagenumbering{roman}  
+\setcounter{page}{1}  % Start from i
+\include{abstract.tex}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Content
+\pagenumbering{arabic}  
+\setcounter{page}{1}
+\input{content/intro-cryptography.tex}
+\input{content/block-cipher.tex}
+\input{content/aes-overview.tex}
+\input{content/aes-history.tex}
+
+
+
+
+
+% \appendix
+% \include{appendix.tex}
+
+
+% \newpage
+% \printbibliography
+
+
+\end{document}
