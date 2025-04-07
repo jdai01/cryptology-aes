@@ -11,6 +11,8 @@
 \RequirePackage{datetime}  % For date formatting
 \RequirePackage{setspace}  % For line spacing
 \RequirePackage[backend=biber,style=numeric]{biblatex}
+\RequirePackage{hyperref}
+\RequirePackage{enumitem}
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \addbibresource{references.bib}
@@ -90,6 +92,10 @@
 \fancyfoot[C]{\nouppercase{\rightmark}}  % Bottom center: Section title
 \fancyfoot[R]{\thepage}  % Bottom right: Page number
 
+
+% Tighter spacing for itemize and enumerate environments
+\setlist[itemize]{topsep=2pt, itemsep=1pt, parsep=0pt, partopsep=0pt}
+\setlist[enumerate]{topsep=2pt, itemsep=1pt, parsep=0pt, partopsep=0pt}
 
 
 
