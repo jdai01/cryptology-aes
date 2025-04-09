@@ -2,23 +2,29 @@
 
 In symmetric cryptography, block ciphers and stream ciphers are two main types.
 
-Stream ciphers encrypt data one bit or one byte at a time. 
+\paragraph{Stream ciphers} encrypt data one bit or one byte at a time. 
 They use a \textit{keystream}, where each keystream bit is added to a plaintext bit individually.
 
-\begin{figure}[h] % 'h' means place the figure here if possible
-    \centering
-    \includegraphics[width=.7\textwidth]{streamc.png}
-    \caption{Stream cipher operation}
-    \label{fig:stream_cipher}
-\end{figure}
+\paragraph{Block ciphers} process fixed-size blocks of data, with each block encrypted separately.
 
-Block ciphers process fixed-size blocks of data, with each block encrypted separately.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{blockc.png}
-    \caption{Block cipher operation}
-    \label{fig:block_cipher}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{streamc.png}
+        \caption{Stream cipher operation}
+        \label{fig:stream_cipher}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{blockc.png}
+        \caption{Block cipher operation}
+        \label{fig:block_cipher}
+    \end{subfigure}
+    \caption{Comparison of stream and block cipher operations}
+    \label{fig:cipher_comparison}
 \end{figure}
 
 

@@ -13,6 +13,7 @@
 \RequirePackage[backend=biber,style=numeric]{biblatex}
 \RequirePackage{hyperref}
 \RequirePackage{enumitem}
+\RequirePackage{subcaption} 
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \addbibresource{references.bib}
