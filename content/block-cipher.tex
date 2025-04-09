@@ -31,11 +31,14 @@ They use a \textit{keystream}, where each keystream bit is added to a plaintext 
 
 \begin{table}[h]
     \centering
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{p{3.5cm} p{5cm} p{5cm}}
     \hline
-    \textbf{Feature} & \textbf{Block Cipher} & \textbf{Stream Cipher} \\ \hline
-    How it encrypts & Encrypts data in fixed-size blocks (e.g., 128 bits at once) & Encrypts data continuously, one bit or byte at a time \\ \hline
-    Main advantage & Can offer stronger security if used correctly & Can be faster and better for real-time data (less delay) \\ \hline
+    \textbf{Feature} & \textbf{Block Cipher} & \textbf{Stream Cipher} \\
+    \hline
+    How it encrypts & Encrypts data in fixed-size blocks (e.g., 128 bits at once) & Encrypts data continuously, one bit or byte at a time \\
+    \hline
+    Main advantage & Can offer stronger security if used correctly & Can be faster and better for real-time data (less delay) \\
+    \hline
     \end{tabular}
     \caption{Comparison between Block Cipher and Stream Cipher}
     \label{tab:block_stream_comparison}
