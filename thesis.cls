@@ -14,6 +14,8 @@
 \RequirePackage{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{subcaption} 
+\RequirePackage{amsmath}
+\RequirePackage{xcolor}
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \addbibresource{references.bib}
