@@ -52,7 +52,8 @@
         \vspace*{1ex}
         \begin{center}
             {\LARGE \textsc{Technische Hochschule Ingolstadt}} \\[4ex]
-            {\Large Fakultät Informatik\\}
+            {\Large Fakultät Informatik} \\[3ex]
+            {\large Cryptology SS25\\}
         \end{center}
         \vspace*{3ex}
         \begin{center}
@@ -61,15 +62,15 @@
         \vspace*{8ex}
 
         \begin{center}
-            {\Large Jiahui Dai\\Student-ID: 00153014\\B.Sc. Computer Science and Artificial Intelligence}
+            {\large Jiahui Dai\\Student-ID: 00153014\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
         \vspace*{3ex}
         \begin{center}
-            {\Large Yana Halamakh\\Student-ID: 00151596\\B.Sc. Computer Science and Artificial Intelligence}
+            {\large Yana Halamakh\\Student-ID: 00151596\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
         \vspace*{3ex}
         \begin{center}
-            {\Large Zeynep Melisa Akyol \\Student-ID: 00138182\\B.Sc. Computer Science and Artificial Intelligence}
+            {\large Zeynep Melisa Akyol \\Student-ID: 00138182\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
         % \begin{center}
         %     {\huge \textsc{\@subtitle} \\[3ex] }
