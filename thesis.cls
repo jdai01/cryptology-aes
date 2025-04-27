@@ -52,26 +52,38 @@
         \vspace*{1ex}
         \begin{center}
             {\LARGE \textsc{Technische Hochschule Ingolstadt}} \\[4ex]
-            {\Large Faculty of Computer Science \\}
+            {\Large Fakultät Informatik\\}
         \end{center}
         \vspace*{3ex}
         \begin{center}
             {\Huge \textbf{~\\ \@title} \\}
         \end{center}
         \vspace*{8ex}
+
         \begin{center}
-            {\huge \textsc{\@subtitle} \\[3ex] }
-            {\Large \@author  \\}
+            {\Large Jiahui Dai\\Student-ID: 00153014\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
-        \vspace*{15ex}
+        \vspace*{3ex}
         \begin{center}
-            {\large
-            \begin{tabular}{ r l }
-                Supervisor: & \@supervisor \\ 
-                Date: & \customdate\today
-            \end{tabular}
-            }
-        \end{center}	
+            {\Large Yana Halamakh\\Student-ID: 00151596\\B.Sc. Computer Science and Artificial Intelligence}
+        \end{center}
+        \vspace*{3ex}
+        \begin{center}
+            {\Large Zeynep Melisa Akyol \\Student-ID: 00138182\\B.Sc. Computer Science and Artificial Intelligence}
+        \end{center}
+        % \begin{center}
+        %     {\huge \textsc{\@subtitle} \\[3ex] }
+        %     {\Large \@author  \\}
+        % \end{center}
+        % \vspace*{15ex}
+        % \begin{center}
+        %     {\large
+        %     \begin{tabular}{ r l }
+        %         Supervisor: & \@supervisor \\ 
+        %         Date: & \customdate\today
+        %     \end{tabular}
+        %     }
+        % \end{center}	
     \end{titlepage}
 }
 % Header & Footer
