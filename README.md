@@ -32,6 +32,7 @@ Go to [main.tex](main.tex) and click on the green play button (Build Latex Proje
 > To check if your reference work
 > ```bash
 > pdflatex report.tex
+> makeglossaries report
 > biber report
 > pdflatex report.tex
 > ```

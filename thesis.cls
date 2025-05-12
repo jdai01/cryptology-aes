@@ -10,12 +10,13 @@
 \RequirePackage{titlesec}  % For section title customization
 \RequirePackage{datetime}  % For date formatting
 \RequirePackage{setspace}  % For line spacing
-\RequirePackage[backend=biber,style=numeric]{biblatex}
+\RequirePackage[backend=biber,style=numeric, sorting=none]{biblatex}
 \RequirePackage{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{subcaption} 
 \RequirePackage{amsmath}
 \RequirePackage{xcolor}
+\RequirePackage[acronym]{glossaries}
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \addbibresource{references.bib}
@@ -64,11 +65,11 @@
         \begin{center}
             {\large Jiahui Dai\\Student-ID: 00153014\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
-        \vspace*{3ex}
+        \vspace*{2ex}
         \begin{center}
             {\large Yana Halamakh\\Student-ID: 00151596\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
-        \vspace*{3ex}
+        \vspace*{2ex}
         \begin{center}
             {\large Zeynep Melisa Akyol \\Student-ID: 00138182\\B.Sc. Computer Science and Artificial Intelligence}
         \end{center}
@@ -77,14 +78,15 @@
         %     {\Large \@author  \\}
         % \end{center}
         % \vspace*{15ex}
-        % \begin{center}
-        %     {\large
-        %     \begin{tabular}{ r l }
-        %         Supervisor: & \@supervisor \\ 
-        %         Date: & \customdate\today
-        %     \end{tabular}
-        %     }
-        % \end{center}	
+        \vspace*{4ex}
+        \begin{center}
+            {\large
+            \begin{tabular}{ r l }
+                Supervisor: & \@supervisor \\ 
+                Date: & \customdate\today
+            \end{tabular}
+            }
+        \end{center}	
     \end{titlepage}
 }
 % Header & Footer
