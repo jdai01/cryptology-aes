@@ -2,6 +2,38 @@
 
 \subsection{Why AES is Considered Secure?}
 
+AES has been widely used in practice since it was standardised by NIST more than 20 years ago. 
+It is implemented in protocols and products such as TLS, IPsec, IEEE 802.11i, SSH, WhatsApp, Signal, hard disk encryption tools, and many others.\newline
+
+\noindent AES is probably the most widely used cipher in the world today and has had a strong influence on modern block cipher design. 
+Its design includes the wide trail strategy, which shows how the linear layer helps resist statistical attacks. 
+Many successful modern block ciphers use design elements originally introduced in AES. 
+Currently, no analytical attack that is significantly better than brute force is known on AES.
+
 \subsection{Known Attacks on AES}
 
+Several attacks have been proposed against AES, including the square attack, 
+impossible differential attack, related-key attack, and biclique attack. 
+However, none of these approaches pose a realistic threat to the full cipher.\newline
+
+\noindent The biclique attack is the best known attack on the full AES. 
+In the case of AES-128, the complexity of this attack is approximately $2^{126.1}$, 
+which is only slightly better than brute force. 
+Similar marginal improvements exist for AES-192 and AES-256.\newline
+
+\noindent Elegant algebraic descriptions of AES have also been presented, 
+and some authors have claimed these could be used for attacks. 
+However, follow-up work has shown that these approaches are not feasible in practice.
+
 \subsection{Why These Attacks are Hard to Pull Off?}
+
+The biclique attack improves brute-force complexity only by a small factor and remains far from feasible in practice. 
+All other known attacks either apply to reduced-round versions or require unrealistic assumptions.\newline
+
+\noindent In the context of quantum computing, Grover’s algorithm provides a quadratic speedup over classical brute-force attacks. 
+The most recent and optimised quantum circuit analyses estimate the complexity of a Grover-based attack on AES-128 as approximately $2^{156.3}$, 
+on AES-192 as $2^{221.6}$, and on AES-256 as $2^{286.1}$~\cite{Jang2025}. 
+These results suggest that even in a post-quantum scenario, 
+AES remains secure under current technological limitations.\newline
+
+\noindent To date, none of the proposed classical or quantum attacks have compromised the full AES cipher under realistic conditions.

@@ -2,16 +2,121 @@
 
 \subsection{What are Modes of Operation?}
 
+Block ciphers such as AES are designed to encrypt fixed-length blocks (e.g., 128 bits), 
+but real-world applications typically require secure encryption of variable-length messages. 
+Modes of operation define how to securely encrypt these longer messages by specifying how individual blocks are chained or transformed during encryption. 
+They significantly influence the security and efficiency of the cipher and must be selected carefully based on application requirements.
+
 \subsection{Electronic Codebook (ECB) Mode}
+
+ECB is the simplest AES mode where each plaintext block is encrypted independently:
+\[
+y_i = E_k(x_i), \quad x_i = D_k(y_i)
+\]
+Its determinism leads to serious vulnerabilities: identical plaintext blocks produce identical ciphertexts. 
+This exposes structural patterns in the plaintext, making it unsuitable for most practical applications.
 
 \subsection{Cipher Block Chaining (CBC) Mode}
 
+CBC introduces chaining by XORing each plaintext block with the previous ciphertext:
+\[
+\begin{aligned}
+y_1 &= E_k(x_1 \oplus IV) \\
+y_i &= E_k(x_i \oplus y_{i-1}) \\
+x_1 &= D_k(y_1) \oplus IV \\
+x_i &= D_k(y_i) \oplus y_{i-1}
+\end{aligned}
+\]
+A random initialisation vector (IV) ensures semantic security. 
+However, CBC decryption is parallelisable, while encryption is inherently sequential.
+
 \subsection{Cipher Feedback (CFB) Mode}
+
+CFB operates as a self-synchronising stream cipher:
+\[
+\begin{aligned}
+s_1 &= E_k(IV), \quad y_1 = x_1 \oplus s_1 \\
+s_i &= E_k(y_{i-1}), \quad y_i = x_i \oplus s_i
+\end{aligned}
+\]
+This mode provides partial error recovery and supports smaller data units, such as bytes.
 
 \subsection{Output Feedback (OFB) Mode}
 
+OFB, like CFB, transforms AES into a stream cipher, but the key stream is independent of the ciphertext:
+\[
+\begin{aligned}
+s_1 &= E_k(IV), \quad y_1 = x_1 \oplus s_1 \\
+s_i &= E_k(s_{i-1}), \quad y_i = x_i \oplus s_i
+\end{aligned}
+\]
+It offers full error isolation, but loss of synchronisation between sender and receiver leads to complete decryption failure.
+
 \subsection{Counter (CTR) Mode}
 
-\subsection{XTS-AES - A Mode for Disk Encryption}
+CTR mode generates a keystream using an incrementing counter:
+\[
+y_i = x_i \oplus E_k(\text{Nonce} || \text{CTR}_i)
+\]
+It supports full parallelisation and random access to encrypted data, making it highly suitable for high-throughput systems.
+
+\subsection{XTS-AES: A Mode for Disk Encryption}
+
+XTS-AES was developed specifically for encrypting data on storage devices. 
+It employs a tweakable block cipher and uses two keys, $k_1$ and $k_2$, 
+to compute a unique tweak $T$ for each data block:
+
+\[
+\begin{aligned}
+T &= E_{k_2}(i) \cdot \alpha^j \\
+y_j &= E_{k_1}(x_j \oplus T) \oplus T
+\end{aligned}
+\]
+
+This structure ensures that identical plaintext blocks at different locations produce different ciphertexts, and supports efficient parallel processing.
+
+\subsection{Post-Quantum Security and AES Modes of Operation}
+
+The development of quantum computing poses significant threats to symmetric-key ciphers via Grover’s algorithm, 
+which reduces brute-force complexity from $2^k$ to about $2^{k/2}$. 
+
+\noindent As such, AES-128 may offer only $2^{64}$ bits of effective quantum security.
+Recent work by Jang et al.~\cite{Jang2025} improves resource estimation for quantum AES implementations using optimised Grover’s circuits. \newline
+
+\noindent Their findings yield the following security estimates:
+\begin{itemize}
+    \item AES-128: $2^{156.26}$
+    \item AES-192: $2^{221.58}$
+    \item AES-256: $2^{286.07}$
+\end{itemize}
+
+The study also introduces low-depth circuit architectures designed to comply with NIST’s \texttt{MAXDEPTH} constraint, 
+emphasising modes that support parallelism.
+
+\textbf{Mode Implications:}
+\begin{itemize}
+    \item \textbf{ECB:} Highly insecure; reveals structure under both classical and quantum analysis.
+    \item \textbf{CBC:} Limited parallelism; not ideal in depth-constrained quantum models.
+    \item \textbf{CFB/OFB:} Less deterministic; may provide robustness depending on IV usage.
+    \item \textbf{CTR:} Well-suited for quantum-resilient designs due to full parallelism.
+    \item \textbf{XTS:} Offers random block access and tweakable security; strong candidate for post-quantum storage encryption.
+\end{itemize}
 
 \subsection{Summary of Modes of Operation}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+\textbf{Mode} & \textbf{Parallel} & \textbf{Error Prop.} & \textbf{Random Access} & \textbf{Best For} \\
+\hline
+ECB & Yes & None & Yes & Testing, toy cases \\
+CBC & No (Enc) / Yes (Dec) & Next block & No & File encryption \\
+CFB & No & Next block & No & Streaming with feedback \\
+OFB & Yes & None & No & Error-resilient streaming \\
+CTR & Yes & None & Yes & High-speed applications \\
+XTS & Yes & None & Yes & Disk encryption \\
+\hline
+\end{tabular}
+\caption{Comparison of AES modes of operation.}
+\end{table}
