@@ -15,6 +15,11 @@
 \supervisor{Prof. Katherine Roegner}
 
 
+% Define acronyms
+\input{acronyms.tex}
+\makeglossaries
+
+
 \begin{document}
 
 % Cover Page (No page number)
@@ -26,6 +31,10 @@
 
 
 \include{declaration.tex}
+\newpage
+\addcontentsline{toc}{section}{Acronyms}
+\markright{Acronyms}
+\printglossaries
 
 % Abstract
 \pagenumbering{roman}  
@@ -53,7 +62,7 @@
 \input{content/security-analysis.tex}
 \input{content/aes-modes-of-op.tex}
 
-
+\input{content/applications.tex}
 
 
 
@@ -61,8 +70,8 @@
 % \include{appendix.tex}
 
 
-% \newpage
-% \printbibliography
+\newpage
+\printbibliography
 
 
 \end{document}

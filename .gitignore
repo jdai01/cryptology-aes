@@ -17,6 +17,10 @@
 *.glo
 *.glsdefs
 *.ist
+*.acr
+*.alg
+*.glg
+*.gls
 
 # Others 
 *.DS_Store
