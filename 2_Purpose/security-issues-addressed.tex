@@ -1,1 +1,26 @@
-\subsection{Security issues addressed}
+\subsection{Security Issues Addressed}
+
+Over the years, several attacks have been proposed against the AES, 
+including square attacks, impossible differential attacks, related-key attacks, and biclique attacks. 
+However, none of these techniques broke the full-round AES under practical conditions.\newline
+
+\noindent The biclique attack currently represents the best-known classical cryptanalytic technique on the full AES. 
+AES-128's complexity is approximately $2^{126}$, which is only marginally better than exhaustive key search. 
+Similar minor improvements have been reported for AES-192 and AES-256. 
+These theoretical results do not translate into feasible attacks in practice.\newline
+
+\noindent Algebraic approaches have also been explored by representing AES operations as polynomial equations. 
+While these representations are mathematically elegant, 
+no practical attack has emerged due to the infeasibility of solving the resulting systems on full-round AES.\newline
+
+\noindent In the quantum setting, Grover's algorithm reduces the complexity of brute-force search from $2^n$ to approximately $2^{n/2}$. 
+However, recent quantum circuit analysis shows that this theoretical speedup does not compromise AES. 
+The most advanced implementations estimate quantum attack complexities as $2^{156.3}$ for AES-128, $2^{221.6}$ for AES-192, 
+and $2^{286.1}$ for AES-256. \newline
+
+\noindent These figures, derived from the latest quantum resource evaluations by Jang et al.\cite{Jang2025}, 
+indicate that AES remains secure despite quantum adversaries, 
+given current and near-future technological capabilities.\newline
+
+\noindent All known classical and quantum attacks require unrealistic assumptions or apply only to reduced-round versions of AES. 
+Consequently, AES continues to be considered secure for current and foreseeable post-quantum scenarios.

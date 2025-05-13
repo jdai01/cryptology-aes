@@ -1,1 +1,57 @@
-\subsection{Security Properties}
+\section{Security Properties}
+
+Modes of operation define how a block cipher like AES is applied to variable-length data. 
+Each mode introduces distinct security implications, 
+including confidentiality, error propagation, resistance to structural analysis, 
+and resilience against future threats such as quantum computing.
+
+\noindent The security of a mode depends not only on AES itself but also on how the blocks are processed. 
+For instance:
+
+\begin{itemize}
+    \item \textbf{ECB Mode} encrypts each block independently, leading to pattern leakage. Identical plaintext blocks produce identical ciphertexts, compromising confidentiality, especially in structured data like images.
+    
+    \item \textbf{CBC Mode} introduces randomisation through an Initialisation Vector (IV), ensuring that identical messages yield different ciphertexts. However, encryption is inherently sequential and more sensitive to bit-flip propagation.
+    
+    \item \textbf{CFB and OFB Modes} convert the block cipher into a stream cipher. OFB offers better error isolation, while CFB is self-synchronising but more susceptible to feedback-based error propagation.
+    
+    \item \textbf{CTR Mode} enables full parallelism and random access by encrypting incrementing counters. It avoids feedback loops and supports high-throughput use cases, making it robust in environments requiring speed and scalability.
+    
+    \item \textbf{XTS-AES} is optimised explicitly for disk encryption. It uses a tweakable block cipher based on sector position to ensure that the same data encrypted at different locations yields different ciphertexts, offering strong structural and positional integrity.
+\end{itemize}
+
+\noindent With the anticipated rise of quantum computing, 
+AES modes must also be evaluated under quantum threat models. 
+Grover’s algorithm reduces brute-force complexity from $2^k$ to approximately $2^{k/2}$. \newline
+
+\noindent Jang et al.\cite{Jang2025} present refined circuit depth and gate count estimates under realistic quantum constraints. 
+Their study indicates the following effective quantum security levels:
+
+\begin{itemize}
+    \item AES-128: $2^{156.26}$
+    \item AES-192: $2^{221.58}$
+    \item AES-256: $2^{286.07}$
+\end{itemize} 
+
+\noindent These values, derived using optimised Grover-based search circuits, 
+are well above the estimated practical capabilities of near-term quantum computers\cite{Jang2025}. \newline
+
+\noindent Importantly, parallelisable modes like CTR and XTS are more amenable to low-depth quantum circuit implementations. 
+Their compatibility with constraints such as NIST’s \texttt{MAXDEPTH} parameter makes them promising candidates for quantum-resilient applications\cite{Jang2025}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|l|}
+\hline
+\textbf{Mode} & \textbf{Parallel} & \textbf{Error Propagation} & \textbf{Random Access} & \textbf{Best Use Case} \\
+\hline
+ECB & Yes & None & Yes & Toy cases, testing only \\
+CBC & No (Enc) / Yes (Dec) & Next block & No & File encryption \\
+CFB & No & Next block & No & Streaming data with feedback \\
+OFB & Yes & None & No & Resilient byte-wise streaming \\
+CTR & Yes & None & Yes & High-throughput systems \\
+XTS & Yes & None & Yes & Secure disk encryption \\
+\hline
+\end{tabular}
+\caption{Security characteristics of AES modes of operation.}
+\end{table}
