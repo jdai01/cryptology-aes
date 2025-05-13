@@ -24,10 +24,11 @@ The AES structure consists of the following layers \cite{Paar2024}:
 \end{enumerate}
 
 Each round, except the first, consists of all three layers. 
+The first round consists of the Key Addition layer.
 The final round omits the \textsc{MixColumn} transformation, making both encryption and decryption operations symmetric.
 Figure \ref{fig:aes-block-diagram} shows the block diagram of AES encryption.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=.8\textwidth]{aes-block-diagram.png} % Adjust width as needed
     \caption{
