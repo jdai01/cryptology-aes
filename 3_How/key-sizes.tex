@@ -1,1 +1,17 @@
 \subsection{Key sizes and rounds}
+
+In \gls{AES}, the block size is fixed at 128 bits, but the key size can vary between 128, 192, and 256 bits. 
+The key length determines the number of rounds used in the encryption process, as outlined in Table \ref{table:key-length-rounds}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{c|c}
+        \textbf{Key length (bit)} & \textbf{\# rounds ($n_r$)} \\ 
+        \hline
+        128 & 10 \\  
+        192 & 12 \\  
+        256 & 14 \\  
+    \end{tabular}
+    \caption{Key lengths and number of rounds for AES \cite{Paar2024}.}
+    \label{table:key-length-rounds}
+\end{table}

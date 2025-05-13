@@ -107,7 +107,7 @@
 % Footer Configuration
 \renewcommand{\footrulewidth}{0.4pt}
 % \fancyfoot[L]{\@author}  % Bottom left: Author Name
-\fancyfoot[C]{\nouppercase{\rightmark}}  % Bottom center: Section title
+\fancyfoot[L]{\nouppercase{\rightmark}}  % Bottom center: Section title
 \fancyfoot[R]{\thepage}  % Bottom right: Page number
 
 
