@@ -47,8 +47,8 @@ Their compatibility with constraints such as NIST’s \texttt{MAXDEPTH} paramete
 \textbf{Mode} & \textbf{Parallel} & \textbf{Error Propagation} & \textbf{Random Access} & \textbf{Best Use Case} \\
 \hline
 \Gls{ECB} & Yes & None & Yes & Toy cases, testing only \\
-\Gls{CBC} & No (Enc) / Yes (Dec) & Next block & No & File encryption \\
-\Gls{CFB} & No & Next block & No & Streaming data with feedback \\
+\Gls{CBC} & No (Enc) / Yes (Dec) & Yes(next block) & No & File encryption \\
+\Gls{CFB} & No & Yes(next block) & No & Streaming data with feedback \\
 \Gls{OFB} & Yes & None & No & Resilient byte-wise streaming \\
 \Gls{CTR} & Yes & None & Yes & High-throughput systems \\
 \Gls{XTS} & Yes & None & Yes & Secure disk encryption \\
