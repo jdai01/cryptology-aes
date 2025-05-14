@@ -15,7 +15,7 @@ First, the initial key is loaded into the first $N_k$ words of the key schedule,
 on the key size $K_{len}$ and the number of rounds $N_r$: ($K_{len}$, $N_r$) = (128, 10), (192, 12), and (256, 14) 
 for AES-128, AES-192, and AES-256, respectively \cite{Key_Collisions} (shown in Figure~\ref{fig:key_comb}). AES requires $N_r+1$ round keys, each round key is 
 128 bits (16 bytes) in size, equivalent to four words $N_b$ from the key schedule. The key schedule in 
-response generates a total of $N_b$×($N_r+1$) words\cite{Standards2001}. \newline
+response generates a total of $N_b$×($N_r+1$) words\cite{NIST_AES}. \newline
 
 For example, for AES-192, the key schedule generates 52 words in the key expansion, which equals 208 bytes (4 \textit{bytes per word} × 52 \textit{words}).
 13 round keys are then extracted from these words - one for each of the 12 rounds plus the initial key addition ($N_r$ + 1 = 13).
@@ -53,6 +53,13 @@ with the word $N_k$ positions earlier in the key schedule \cite{Standards2001}.
         constant is not shown. \cite{Key_Collisions}
     }
     \label{fig:key_comb} % Reference this figure with \ref{fig:sample_image}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=.8\textwidth]{key_schedule-128.png}
+    \caption{Key schedule for AES-128 \cite{Paar2024}.}
+    \label{fig:key-schedule-128}
 \end{figure}
 
 \subsubsection*{Key Size and Security}

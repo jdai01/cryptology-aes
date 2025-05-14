@@ -1,6 +1,9 @@
 \subsection{\textsc{MixColumns}}
 
 The \textsc{MixColumn} transformation is a linear transformation which mixes each column of the state matrix. 
+It provides diffusion by mixing the bytes within each column using a fixed matrix over the Galois Field $\text{GF}(2^8)$.
+
+Formally, the transformation can be expressed as:
 \begin{align}
     MixColumn(B) &= C\\
     \begin{pmatrix}
@@ -22,16 +25,15 @@ The \textsc{MixColumn} transformation is a linear transformation which mixes eac
         C_{1,c} \\
         C_{2,c} \\
         C_{3,c} \\
-    \end{pmatrix}
+    \end{pmatrix}, \quad \text{for } 0 \leq c < N_b
 \end{align}
-for $0 \leq c \leq Nb$.
-% with $B$ being the 16-byte input state after \texttt{ShiftRows} operation given in Equation \ref{} and C being the 16-byte output state.
-% Each vector column of B is multiplied by a fixed $4 \times 4$ matrix (containing constant entries).
+with $B$ represents the input state matrix after the \texttt{ShiftRows} operation, and $C$ is the resulting state after \texttt{MixColumns}. 
+Each column vector of $B$ is multiplied by a constant $4 \times 4$ matrix, where each element is a byte in hexadecimal notation and the multiplication is carried out in $\text{GF}(2^8)$.
 
-As a result of this multiplication, the four bytes in a column are replaced with the following
+The resulting output bytes in each column are computed as:
 \begin{align}
-    C_{0,c} & = (\{02\} * B_{0,c}) &&\oplus (\{03\} * B_{1,c}) &&\oplus B_{2,c} &&\oplus B_{3,c}\\
-    C_{1,c} & = B_{0,c} &&\oplus (\{02\} * B_{1,c}) &&\oplus (\{03\} * B_{2,c}) &&\oplus B_{3,c}\\
-    C_{2,c} & = B_{0,c}  &&\oplus B_{1,c} &&\oplus (\{02\} * B_{2,c}) &&\oplus (\{03\} * B_{3,c})\\
-    C_{3,c} & = (\{03\} * B_{0,c}) &&\oplus B_{1,c} &&\oplus B_{2,c} &&\oplus (\{02\} * B_{3,c})
+    C_{0,c} & = (\{02\} \bullet B_{0,c}) &&\oplus (\{03\} \bullet B_{1,c}) &&\oplus B_{2,c} &&\oplus B_{3,c}\\
+    C_{1,c} & = B_{0,c} &&\oplus (\{02\} \bullet B_{1,c}) &&\oplus (\{03\} \bullet B_{2,c}) &&\oplus B_{3,c}\\
+    C_{2,c} & = B_{0,c}  &&\oplus B_{1,c} &&\oplus (\{02\} \bullet B_{2,c}) &&\oplus (\{03\} \bullet B_{3,c})\\
+    C_{3,c} & = (\{03\} \bullet B_{0,c}) &&\oplus B_{1,c} &&\oplus B_{2,c} &&\oplus (\{02\} \bullet B_{3,c})
 \end{align}
