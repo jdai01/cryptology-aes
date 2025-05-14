@@ -11,7 +11,7 @@ For instance:
 \begin{itemize}
     \item \textbf{\Gls{ECB} Mode} encrypts each block independently, leading to pattern leakage. Identical plaintext blocks produce identical ciphertexts, compromising confidentiality, especially in structured data like images.
     
-    \item \textbf{\Gls{CBC} Mode} introduces randomisation through an Initialisation Vector (IV), ensuring that identical messages yield different ciphertexts. However, encryption is inherently sequential and more sensitive to bit-flip propagation.
+    \item \textbf{\Gls{CBC} Mode} introduces randomisation through an \Gls{IV}, ensuring that identical messages yield different ciphertexts. However, encryption is inherently sequential and more sensitive to bit-flip propagation.
     
     \item \textbf{\Gls{CFB} and \Gls{OFB} Modes} convert the block cipher into a stream cipher. OFB offers better error isolation, while CFB is self-synchronising but more susceptible to feedback-based error propagation.
     
