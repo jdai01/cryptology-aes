@@ -1,11 +1,94 @@
 \subsection{Mathematical Preliminaries}
 
-
+\Gls{AES} relies heavily on operations over a specific mathematical structure known as the finite field $\mathrm{\Gls{GF}}(2^8)$. In this section, we explore the core arithmetic concepts within this field that are fundamental to how AES works.
 
 \subsubsection{Addition}
 \label{sec:addition}
 
+In $\mathrm{\Gls{GF}}(2^8)$, addition is performed using bitwise \Gls{XOR}, which essentially means each bit of the result is the modulo 2 sum of the corresponding bits of the inputs. If we have two bytes:
 
+\[
+a = \{a_7a_6a_5a_4a_3a_2a_1a_0\}, \quad b = \{b_7b_6b_5b_4b_3b_2b_1b_0\}
+\]
+
+then their sum $c$ is calculated as:
+
+\[
+c_i = a_i \oplus b_i \quad \text{for } i = 0 \text{ to } 7
+\]
+
+Or more simply:
+
+\[
+c = a \oplus b
+\]
+
+For example:
+
+\[
+\{57\} \oplus \{83\} = \{d4\}
+\]
+
+This operation is equivalent to adding polynomials over $\mathrm{\Gls{GF}}(2)$ (binary coefficients) where addition and subtraction are identical since both are performed modulo 2.
 
 \subsubsection{Multiplication}
 \label{sec:multiplication}
+
+Multiplication in $\mathrm{\Gls{GF}}(2^8)$ involves polynomial arithmetic. Each byte is treated as a polynomial of degree at most 7 with binary coefficients. Multiplication is then done modulo an irreducible polynomial of degree 8, which for \Gls{AES} is:
+
+\[
+m(x) = x^8 + x^4 + x^3 + x + 1
+\]
+
+For instance, the byte $\{57\}$ (binary 01010111) represents the polynomial:
+
+\[
+x^6 + x^4 + x^2 + x + 1
+\]
+
+To multiply two bytes $a(x)$ and $b(x)$, we compute:
+
+\[
+c(x) = a(x) \cdot b(x) \mod m(x)
+\]
+
+An example would be:
+
+\[
+\{57\} \cdot \{83\} = \{c1\}
+\]
+
+Because this operation can be computationally heavy, efficient implementations often use lookup tables or optimized routines like \texttt{xtime}, which simplifies multiplication by $x$.
+
+\subsubsection{Multiplication by \texorpdfstring{$x$}{x}}
+\label{sec:multx}
+
+Multiplying a byte by $x$ (equivalent to $\{02\}$) involves a left shift of the byte, with an additional XOR with $\{1b\}$ if the leftmost bit (most significant bit) is 1:
+
+\[
+\text{xtime}(b) =
+\begin{cases}
+b \ll 1, & \text{if } b_7 = 0 \\
+(b \ll 1) \oplus \{1b\}, & \text{if } b_7 = 1
+\end{cases}
+\]
+
+This allows for fast multiplication by $x$ modulo the \Gls{AES} irreducible polynomial.
+
+\subsubsection{The Finite Field \texorpdfstring{$\mathrm{\Gls{GF}}(2^8)$}{\Gls{GF}(2^8)}}
+\label{sec:galois}
+
+The field $\mathrm{\Gls{GF}}(2^8)$ consists of 256 elements and is formed by polynomials with binary coefficients, each of degree less than 8. All arithmetic in this field is done modulo the irreducible polynomial:
+
+\[
+m(x) = x^8 + x^4 + x^3 + x + 1
+\]
+
+Each element corresponds to an 8-bit byte. Operations in the field include:
+\begin{itemize}
+    \item \textbf{Addition:} Performed as bitwise XOR
+    \item \textbf{Multiplication:} Polynomial multiplication modulo $m(x)$
+    \item \textbf{Inversion:} Found using the Extended Euclidean Algorithm
+\end{itemize}
+
+These operations are critical in the \Gls{AES} algorithm, particularly in transformations like \texttt{SubBytes} and \texttt{MixColumns}, which depend on the structure of $\mathrm{\Gls{GF}}(2^8)$ to ensure both security and performance.
