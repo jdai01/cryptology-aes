@@ -1,9 +1,9 @@
-\subsection{Limitations and considerations}
+\subsection{Limitations and considerations:}
 
 Despite its many strengths, using AES in practice has several important challenges that can affect security 
 and effectiveness of cryptographic solutions.
 
-\subparagraph{Key Management}
+\subparagraph{Key Management:}
 
 No symmetric cipher, including AES, can guarantee security if key management practices are poor. The entire 
 method fundamentally depends on the secrecy, integrity, and lifecycle management of keys. Secure generation, 
@@ -13,15 +13,15 @@ Regardless of AES's mathematical strength, mistakes — such as using weak keys,
 rotate compromised keys, or transmitting keys over insecure channels—can undermine the confidentiality of 
 encrypted data.
 
-\subparagraph{Implementation Vulnerabilities}
+\subparagraph{Implementation Vulnerabilities:}
 
 AES's theoretical resilience is not immune to practical attacks targeting its real-world implementation. 
 Side-channel attacks—such as timing, cache, power consumption, or electromagnetic radiation analysis—can 
 reveal key material if the implementation is not carefully handled. Mitigating these risks requires additional 
 programming practices like constant-time implementations or mathematically secure curves.
 
-\subparagraph{Lack of Built-In Authentication}
+\subparagraph{Lack of Built-In Authentication:}
 AES offers confidentiality, but it does not include a way to verify that the encrypted data hasn't been tampered 
-with. Data integrity and authenticity must be added using MACs or by adopting combined authenticated encryption 
-modes like GCM or CCM. Neglecting to supplement basic AES with integrity checks can expose the system to forgery 
+with. Data integrity and authenticity must be added using \Gls{MAC}s or by adopting combined authenticated encryption 
+modes like \Gls{GCM} or \Gls{CCM} \cite{rfc4494}. Neglecting to supplement basic AES with integrity checks can expose the system to forgery 
 and modification attacks.
