@@ -1,1 +1,35 @@
 \subsection{\textsc{ShiftRows}}
+
+The \textsc{ShiftRows} transformation cyclincally shifts the second row of the state matrix three bytes to the right, the third row by two bytes to the right, and the forth row by one byte to the right (Eq. \ref{eq:ShiftRows}).
+The first row is not changed.
+
+The purpose of this is to increase the diffusion properties of AES.
+
+\begin{equation}
+    \begin{array}{c@{\quad \longrightarrow \quad}c}
+        \begin{array}{|c|c|c|c|}
+        \hline
+        B_0 & B_4 & B_8 & B_{12} \\
+        \hline
+        B_1 & B_5 & B_9 & B_{13} \\
+        \hline
+        B_2 & B_6 & B_{10} & B_{14} \\
+        \hline
+        B_3 & B_7 & B_{11} & B_{15} \\
+        \hline
+        \end{array}
+    &
+    \begin{array}{|c|c|c|c|}
+        \hline
+        B_0 & B_4 & B_8 & B_{12} \\
+        \hline
+        B_5 & B_9 & B_{13} & B_1 \\
+        \hline
+        B_{10} & B_{14} & B_2 & B_6 \\
+        \hline
+        B_{15} & B_3 & B_7 & B_{11} \\
+        \hline
+        \end{array}
+    \end{array}
+    \label{eq:ShiftRows}
+\end{equation}
