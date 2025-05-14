@@ -17,6 +17,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{xcolor}
 \RequirePackage[acronym]{glossaries}
+\RequirePackage{listings}
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \addbibresource{references.bib}
@@ -116,5 +117,25 @@
 \setlist[enumerate]{topsep=2pt, itemsep=1pt, parsep=0pt, partopsep=0pt}
 
 
+
+% For python
+\definecolor{codegray}{gray}{0.95}
+\definecolor{pykeyword}{rgb}{0.25,0.2,0.75}
+\definecolor{pystring}{rgb}{0.0,0.5,0.0}
+
+\renewcommand{\lstlistingname}{Code}
+\lstset{
+  language=Python,
+  backgroundcolor=\color{gray!10},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{green!60!black},
+  commentstyle=\color{gray}\itshape,
+  frame=single,
+  showstringspaces=false,
+  breaklines=true,
+  tabsize=4,
+  captionpos=b
+}
 
 \endinput
