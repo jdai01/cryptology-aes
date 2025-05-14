@@ -1,1 +1,37 @@
 \subsection{\textsc{MixColumns}}
+
+The \textsc{MixColumn} transformation is a linear transformation which mixes each column of the state matrix. 
+\begin{align}
+    MixColumn(B) &= C\\
+    \begin{pmatrix}
+        02 & 03 & 01 & 01\\
+        01 & 02 & 03 & 01\\
+        01 & 01 & 02 & 03\\
+        03 & 01 & 01 & 02
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        B_{0,c} \\
+        B_{1,c} \\
+        B_{2,c} \\
+        B_{3,c} \\
+    \end{pmatrix}
+    &=
+    \begin{pmatrix}
+        C_{0,c} \\
+        C_{1,c} \\
+        C_{2,c} \\
+        C_{3,c} \\
+    \end{pmatrix}
+\end{align}
+for $0 \leq c \leq Nb$.
+% with $B$ being the 16-byte input state after \texttt{ShiftRows} operation given in Equation \ref{} and C being the 16-byte output state.
+% Each vector column of B is multiplied by a fixed $4 \times 4$ matrix (containing constant entries).
+
+As a result of this multiplication, the four bytes in a column are replaced with the following
+\begin{align}
+    C_{0,c} & = (\{02\} * B_{0,c}) &&\oplus (\{03\} * B_{1,c}) &&\oplus B_{2,c} &&\oplus B_{3,c}\\
+    C_{1,c} & = B_{0,c} &&\oplus (\{02\} * B_{1,c}) &&\oplus (\{03\} * B_{2,c}) &&\oplus B_{3,c}\\
+    C_{2,c} & = B_{0,c}  &&\oplus B_{1,c} &&\oplus (\{02\} * B_{2,c}) &&\oplus (\{03\} * B_{3,c})\\
+    C_{3,c} & = (\{03\} * B_{0,c}) &&\oplus B_{1,c} &&\oplus B_{2,c} &&\oplus (\{02\} * B_{3,c})
+\end{align}
