@@ -25,39 +25,85 @@ These operations are critical in the \Gls{AES} algorithm, particularly in transf
 \subsubsection{Addition}
 \label{sec:addition}
 
-The addition of two elements in a finite field is perfomed with the \texttt{XOR} operation, denoted by $\oplus$, with
+The addition of two elements in a finite field $GF(2^8)$ is perfomed with the bitwise \texttt{XOR} operation, denoted by $\oplus$.
+Formally, this can be expressed as
 \begin{align}
     c_i &= a_i \oplus b_i \quad \forall i \in [0, 7]
 \end{align}
-in $GF(2^8)$.
+where $a_i, b_i$, and $c_i$ represents the bits of the input elements and the result respectively.
+
+
+\paragraph{Example:} Addition of $(57)_{\text{hex}}$ and $(83)_{\text{hex}}$
+\[
+\begin{array}{ccccccccccc}
+     & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & = & \{57\} \\
+\oplus & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & = & \{83\} \\
+\hline
+     & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0 & = & \{d4\} \\
+\end{array}
+\]
+
+Therefore, $(57)_{\text{hex}} \oplus (83)_{\text{hex}} = (d4)_{\text{hex}}$. 
 
 
 \subsubsection{Multiplication}
 \label{sec:multiplication}
 
-Multiplication in $\mathrm{\Gls{GF}}(2^8)$ involves polynomial arithmetic, denoted by $\bullet$. 
-Each byte is treated as a polynomial of degree at most 7 with binary coefficients. 
-Multiplication is then done modulo an irreducible polynomial of degree 8, which for \Gls{AES} is described in Eq. \ref{eq:irred-poly}.
+Multiplication in a finite field $GF(2^8)$, denoted by $\bullet$, is defined as the multiplication of two polynomials modulo an irreducible polynomial of degree 8.
+Formally, the operation is expressed as:
+\begin{equation}
+    c(x) = a(x) \bullet b(x) \mod m(x)
+    \label{eq:mul}
+\end{equation}
+where $a(x)$ and $b(x)$ are polynomials representing the field elements, and $m(x)$ is the reducible polynomial defining the field.
 
-For instance, the byte $\{57\}$ (binary 01010111) represents the polynomial:
+For \gls{AES} algorithm, this irreducible polynomial $m(x)$ is fixed and given as follow:
+\begin{equation}
+    m(x) = x^8 + x^4 + x^3 + x + 1
+\end{equation}
+This polynomial corresponds to the binary representation $(100011010)_{\text{bin}}$.
 
+\paragraph{Example:} Multiplication of $(53)_{\text{hex}}$ and $(83)_{\text{hex}}$
+
+The polynomial multiplication before modulo reduction is
 \[
-x^6 + x^4 + x^2 + x + 1
+\begin{array}{ccl}
+    \overbrace{(x^6 + x^4 + x^2 + x^1 + 1)}^{(53)_{\text{hex}}} \bullet \overbrace{(x^7 + x + 1)}^{(83)_{\text{hex}}} \mod m(x) & = & \left(x^{13} + x^{11} + x^9 + x^8 + x^7\\
+    && + x^7 + x^5 + x^3 + x^2 + x\\
+    && + x^6 + x^4 + x^2 + x + 1 \right) \mod m(x)
+\end{array}
 \]
 
-To multiply two bytes $a(x)$ and $b(x)$, we compute:
-
-\begin{align}
-    c(x) = a(x) \bullet b(x) \mod m(x) \label{eq:mul}
-\end{align}
-
-An example would be:
-
+The resulting polynomial sum is computed using the bitwise \texttt{XOR} operation over the coefficients:
 \[
-\{57\} \bullet \{83\} = \{c1\}
+\begin{array}{ccccccccccccccc}
+    &1&0&1&0&1&1&1&0&0&0&0&0&0&0\\
+    \oplus &&&&&&&1&0&1&0&1&1&1&0\\
+    \oplus &&&&&&&&1&0&1&0&1&1&1\\
+    \hline
+    &1&0&1&0&1&1&0&1&1&1&1&0&0&1
+\end{array}
 \]
 
-Because this operation can be computationally heavy, efficient implementations often use lookup tables or optimized routines like \texttt{xtime}, which simplifies multiplication by $x$.
+Next, the modulo operation by the irreducible polynomial $m(x)$ is performed:
+\[
+\begin{array}{cccccccccccccccc}
+    &1&0&1&0&1&1&0&1&1&1&1&0&0&1\\
+    \oplus &1&0&0&0&1&1&0&1&0\\
+    \hline
+    &0&0&1&0&0&0&0&0&0&1&1&0&0&1\\
+    \oplus &&&1&0&0&0&1&1&0&1&0\\
+    \hline
+    &&&0&0&0&0&1&1&0&0&0&0&0&1
+\end{array}
+\].
+
+The final result corresponds to the binary value $(11000001)_{\text{bin}} = (c1)_{\text{hex}}$.
+
+Thus, $(57)_{\text{hex}} \bullet (83)_{\text{hex}} = (c1)_{\text{hex}}$.
+
+
+% Because this operation can be computationally heavy, efficient implementations often use lookup tables or optimized routines like \texttt{xtime}, which simplifies multiplication by $x$.
 
 \subsubsection{Multiplication by \texorpdfstring{$x$}{x}}
 \label{sec:multx}
