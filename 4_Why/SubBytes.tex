@@ -5,7 +5,7 @@ The \textsc{SubBytes} transformation is a non-linear byte substitution step that
 It can be viewed as the application of 16 parallel S-Boxes, each processing 8-bit input to produce an 8-bit output, as illustrated in Figure~\ref{fig:byte-substitution}. 
 For every byte $A_i$ in the \gls{AES} state, the transformation produces a substituted byte $B_i$, defined by the function $B_i = S(A_i)$.
 
-\begin{figure}[h] 
+\begin{figure}[!ht] 
     \centering
     \includegraphics[width=.6\textwidth]{byte-substitution.png} 
     \caption{
@@ -19,8 +19,6 @@ The construction of the S-Box is based on two sequential transformations:
     \item \textbf{Galois Field Inversion}: 
     Each byte is interpreted as an element in the finite field $GF(2^8)$ and is mapped to its multiplicative inverse in this field. 
     This operation is defined by:
-    % Take the multiplicative inverse in the finite field $GF(2^8)$ and solve for ${B'}_i$ (Equation \ref{eq:gfi}), described in Section \ref{sec:multiplication}. 
-    % The element $\{00\}$ is mapped to itself.
     
     \begin{align}
         A_i \cdot {B'}_i &= 1 \mod m(x)
@@ -43,9 +41,9 @@ The construction of the S-Box is based on two sequential transformations:
 A complete S-Box can be precomputed by applying these transformations to all 256 possible input bytes (from \texttt{00} to \texttt{FF}), allowing efficient lookup during AES encryption. 
 The full substitution table is shown in Figure~\ref{fig:sbox}.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
     \centering
-    \includegraphics[width=.9\textwidth]{sbox.png}
+    \includegraphics[width=.8\textwidth]{sbox.png}
     \caption{S-Box: substitution values for the byte $\{xy\}$ \cite{NIST_AES}.}
     \label{fig:sbox}
 \end{figure}
