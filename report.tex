@@ -16,21 +16,17 @@
 
 
 % Define acronyms
-\input{acronyms.tex}
+\input{misc/acronyms.tex}
 \makeglossaries
 
 
 \begin{document}
-
-% Cover Page (No page number)
 \pagenumbering{gobble}  % Hide page numbering
-
-% \input{coverpage}
 \maketitle
+\setcounter{page}{1}  % Start from i
 
-
-
-\include{declaration.tex}
+% Declaration
+\include{misc/declaration.tex}
 \newpage
 \addcontentsline{toc}{section}{Acronyms}
 \markright{Acronyms}
@@ -38,7 +34,6 @@
 
 % Abstract
 \pagenumbering{roman}  
-\setcounter{page}{1}  % Start from i
 \include{abstract.tex}
 
 % Table of Contents
