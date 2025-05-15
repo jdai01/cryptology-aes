@@ -16,29 +16,27 @@
 
 
 % Define acronyms
-\input{acronyms.tex}
+\input{misc/acronyms.tex}
 \makeglossaries
 
 
 \begin{document}
-
-% Cover Page (No page number)
 \pagenumbering{gobble}  % Hide page numbering
-
-% \input{coverpage}
 \maketitle
+\pagenumbering{roman}  
+\setcounter{page}{1}  % Start from i
 
-
-
-\include{declaration.tex}
+% Declaration
+\include{misc/declaration.tex}
 \newpage
+
+% Acronyms
 \addcontentsline{toc}{section}{Acronyms}
 \markright{Acronyms}
+\vspace*{-4.5em}
 \printglossaries
 
 % Abstract
-\pagenumbering{roman}  
-\setcounter{page}{1}  % Start from i
 \include{abstract.tex}
 
 % Table of Contents
@@ -55,20 +53,18 @@
 % Content
 \pagenumbering{arabic}  
 \setcounter{page}{1}
-\input{1_Introduction/main.tex}
-\input{2_Purpose/main.tex}
-\input{3_How/main.tex}
-\input{4_Why/main.tex}
-\input{5_Example/main.tex}
-\input{6_Applications/main.tex}
-\input{7_Conclusion/main.tex}
+\include{1_Introduction/main.tex}
+\include{2_Purpose/main.tex}
+\include{3_How/main.tex}
+\include{4_Why/main.tex}
+\include{5_Example/main.tex}
+\include{6_Applications/main.tex}
+\include{7_Conclusion/main.tex}
+\include{Appendix/main}
 
-
-
-\appendix
-\include{appendix.tex}
-
+% References
 \newpage
+\addcontentsline{toc}{section}{References}
 \printbibliography
 
 

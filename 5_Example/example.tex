@@ -1,7 +1,7 @@
 \subsection{Implementation details}
 
 Building on the mathematical foundation outlined in Section~\ref{sec:why}, the AES algorithm was implemented in Python to demonstrate its practical application.
-This implementation supports only AES-128, and require both the encryption key and input data to be provided in hexadecimal format. 
+This implementation supports only AES-128, and requires both the encryption key and input data to be provided in hexadecimal format. 
 The complete source code is provided in Appendix~\ref{appendix:code}.
 
 The implementation is structured across three Python modules: \texttt{functions.py}, \texttt{bin\_math.py}, and \texttt{aes.py}, each responsible for a specific aspect of the algorithm.
@@ -21,7 +21,7 @@ The \texttt{bin\_math.py} module (see Python Code~\ref{lst:bin-math}) implements
 This module includes:
 \begin{itemize}
     \item \texttt{gf\_mult(a, b)}: Performs Galois Field multiplication of two bytes, as explained in Section~\ref{sec:multiplication}.
-    \item \texttt{generate\_gf(primitive\_element)}: Constructs the extension field GF($2^8$) using a given primitive element, as described in Section~\ref{sec:multx}.
+    \item \texttt{generate\_gf(primitive\_element)}: Constructs the extension field GF($2^8$) using a given primitive element, as described in Section~\ref{sec:multiplication}.
 \end{itemize}
 
 The core AES encryption logic is implemented in the \texttt{aes.py} module (see Python Code~\ref{lst:aes-impl}). 
@@ -29,13 +29,13 @@ This module includes the main algorithmic transformations and key scheduling log
 \begin{itemize}
     \item \texttt{load\_properties(key\_length)}: Loads AES parameters such as the number of rounds based on the specified key length.
     \item \texttt{generate\_sbox()}: Generates the AES S-Box used in the \textsc{SubBytes} step (see Section~\ref{sec:SubBytes}).
-    \item \texttt{generate\_rc(Nr=10)}: Produces a list of round constants used in the key expansion process.
-    \item \texttt{g(word, rc)}: Implements the transformation function used during key expansion.
+    \item \texttt{generate\_rc(Nr=10)}: Produces a list of round constants used in the key expansion process (see Section~\ref{sec:key-expansion}).
+    \item \texttt{g(word, rc)}: Implements the transformation function used during key expansion (see Section~\ref{sec:key-expansion}).
     \item \texttt{KeyExpansion(key, Nb=4, Nk=4, Nr=10)}: Performs AES key expansion to generate round keys (see Section~\ref{sec:key-expansion}).
     \item \texttt{enter\_key(key)}: Prepares and expands the encryption key by processing it and initializing the key expansion.
     \item \texttt{SubBytes(state)}: Performs the \textsc{SubBytes} transformation to the AES state (see Section~\ref{sec:SubBytes}).
     \item \texttt{ShiftRows(state)}: Performs the \textsc{ShiftRows} transformation (see Section~\ref{sec:ShiftRows}).
     \item \texttt{MixColumns(state)}: Performs the MixColumns transformation (see Section~\ref{sec:MixColumns}).
-    \item \texttt{AddRoundKey(state, keys)}: Adds the round key to the current state using XOR (see Section~\ref{sec:AddRoundKey}).
+    \item \texttt{AddRoundKey(state, keys)}: Adds the round key to the current state using \texttt{XOR} (see Section~\ref{sec:AddRoundKey}).
     \item \texttt{encrypt(input\_)}: Executes the full AES encryption procedure on the given input.
 \end{itemize}
