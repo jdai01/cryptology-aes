@@ -10,6 +10,7 @@ based on the AES version (AES-128, AES-192, or AES-256), mainly in the number of
 and the size of the key.
 
 \subsubsection*{Main Algorithm of Key Expansion}
+\label{sec:key-expansion}
 
 First, the initial key is loaded into the first $N_k$ words of the key schedule, where $N_k$ depends 
 on the key size $K_{len}$ and the number of rounds $N_r$: ($K_{len}$, $N_r$) = (128, 10), (192, 12), and (256, 14) 

@@ -11,15 +11,20 @@
 \RequirePackage{datetime}  % For date formatting
 \RequirePackage{setspace}  % For line spacing
 \RequirePackage[backend=biber,style=numeric, sorting=none]{biblatex}
-\RequirePackage{hyperref}
+\RequirePackage[pdfborder={0 0 0}]{hyperref}
 \RequirePackage{enumitem}
 \RequirePackage{subcaption} 
 \RequirePackage{amsmath}
 \RequirePackage{xcolor}
 \RequirePackage[acronym]{glossaries}
 \RequirePackage{listings}
+\RequirePackage{pdflscape}
+\RequirePackage{parskip}
 
 \setstretch{1.25}  % Set line spacing to 1.25
+\setlength{\parindent}{0pt}  % No paragraph indentation
+\setlength{\parskip}{1em}    % 1em vertical space between paragraphs
+
 \addbibresource{references.bib}
 
 
@@ -57,7 +62,7 @@
             {\Large Fakultät Informatik} \\[3ex]
             {\large Cryptology SS25\\}
         \end{center}
-        \vspace*{3ex}
+        \vspace*{2ex}
         \begin{center}
             {\Huge \textbf{~\\ \@title} \\}
         \end{center}
@@ -123,7 +128,8 @@
 \definecolor{pykeyword}{rgb}{0.25,0.2,0.75}
 \definecolor{pystring}{rgb}{0.0,0.5,0.0}
 
-\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistingname}{Python Code}
+\renewcommand{\lstlistlistingname}{List of Code Listings}
 \lstset{
   language=Python,
   backgroundcolor=\color{gray!10},
@@ -135,7 +141,12 @@
   showstringspaces=false,
   breaklines=true,
   tabsize=4,
-  captionpos=b
+  captionpos=b,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=10pt,
+  breakatwhitespace=false,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space} % ← continuation arrow
 }
 
 \endinput

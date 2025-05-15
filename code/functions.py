@@ -1,12 +1,19 @@
 import numpy as np
-import binascii
 
 def process_str(string):
+    """
+    Removes all whitespace from a given string.
+    """
+
     return string.replace(" ", "")
 
 def process_key(key, Nk=4):
+    """
+    Processes a hexadecimal key string into a NumPy array of bytes.
+    """
+
     try:
-        key = process_str(key)
+        key = process_str(key)  # Remove spaces
         
         # Convert hex string to list of integers
         bytes_list = [int(key[i:i+2], 16) for i in range(0, len(key), 2)]
@@ -17,6 +24,9 @@ def process_key(key, Nk=4):
         raise Exception("Key must be hexadecimal.")
 
 def process_input_hex(input_hex):
+    """
+    Processes a hexadecimal input (e.g., plaintext or ciphertext) into a 4x4 AES state matrix.
+    """
     try:
         return process_key(input_hex).T
     except:

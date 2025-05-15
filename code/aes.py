@@ -110,6 +110,9 @@ class AES():
         return w
 
     def enter_key(self, key):
+        """
+        Prepares and expands the encryption key for AES.
+        """
         self.key = process_str(key)
         
         key = process_key(key, self.Nk)
@@ -153,6 +156,9 @@ class AES():
         return n
 
     def AddRoundKey(self, state, keys):
+        """
+        AddRoundKey transformation
+        """
         s_ = [[None for _ in range(4)] for i in range(self.Nb)]
 
         k_ = [word_to_bytes(word) for word in keys]
@@ -164,6 +170,9 @@ class AES():
         return s_
 
     def encrypt(self, input_):
+        """
+        Encryption algorithm of AES
+        """
         self.input_ = input_
         initial_state = process_input_hex(input_)
 

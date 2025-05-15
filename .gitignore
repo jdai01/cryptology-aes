@@ -21,6 +21,9 @@
 *.alg
 *.glg
 *.gls
+*.lof
+*.lot
+*.lol
 
 # Others 
 *.DS_Store
