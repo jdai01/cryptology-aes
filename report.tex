@@ -23,17 +23,19 @@
 \begin{document}
 \pagenumbering{gobble}  % Hide page numbering
 \maketitle
+\pagenumbering{roman}  
 \setcounter{page}{1}  % Start from i
 
 % Declaration
 \include{misc/declaration.tex}
 \newpage
+
+% Acronyms
 \addcontentsline{toc}{section}{Acronyms}
 \markright{Acronyms}
 \printglossaries
 
 % Abstract
-\pagenumbering{roman}  
 \include{abstract.tex}
 
 % Table of Contents
@@ -59,7 +61,9 @@
 \include{7_Conclusion/main.tex}
 \include{Appendix/main}
 
+% References
 \newpage
+\addcontentsline{toc}{section}{References}
 \printbibliography
 
 
