@@ -1,7 +1,12 @@
-\subsection{\textsc{AddRoundKey}}
+\subsection{\textsc{AddRoundKey} transformation}
 \label{sec:AddRoundKey}
 
-The two inputs to Key Addition layer are the current 16-byte state matrix $C$ and a subkey which also consists of 16 bytes (128 bits).
-The two inputs are combined through a bitwise XOR operation.
+The \textsc{AddRoundKey} transformation combines the current state matrix with a round key derived from the key expansion process (Section \ref{sec:key-expansion}). 
 
-% \textcolor{red}{Talk about key schedule?}
+This transformation operates by performing a bitwise \texttt{XOR} operation between each byte of the state matrix and the corresponding byte of the round key, represented as:
+\begin{equation}
+    C_{i,\text{out}} = C_{i,\text{in}} \oplus K_i
+\end{equation}
+where $ C_{i,\text{in}}$ and $C_{i,\text{out}}$ denote the input and output bytes of the state respectively, and $K_i$ represents the corresponding byte of the round key.
+
+This step introduces key-dependent confusion into the encryption process, ensuring that the state is uniquely modified at each round based on the key material.
