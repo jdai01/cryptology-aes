@@ -20,6 +20,7 @@
 \RequirePackage{listings}
 \RequirePackage{pdflscape}
 \RequirePackage{parskip}
+\RequirePackage{amsfonts}
 
 \setstretch{1.25}  % Set line spacing to 1.25
 \setlength{\parindent}{0pt}  % No paragraph indentation

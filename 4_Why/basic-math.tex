@@ -1,26 +1,25 @@
-\subsection{Mathematics Foundation}
+\subsection{Mathematics Foundations}
 
-As all bytes in the \gls{AES} algorithm are interpreted as finite field elements, they can be added and multiploed. 
-However, these operations are different from decimal numbers and are outlined below.
+As all bytes in the \gls{AES} algorithm are treated as elements of a finite field, operations such as addition and multiplication are performed according to the rules of the Galois Field $GF(2^8)$, rather than standard arithmetic. 
+These operations use polynomial representations and are essential to \gls{AES} transformations.
 
 
-\subsubsection{The Finite Field \texorpdfstring{$\mathrm{\Gls{GF}}(2^8)$}{\Gls{GF}(2^8)}}
-\label{sec:galois}
+\subsubsection{Galois Field $GF(2^8)$}
+\label{sec:gf}
 
-The field $\mathrm{\Gls{GF}}(2^8)$ consists of 256 elements and is formed by polynomials with binary coefficients, each of degree less than 8. All arithmetic in this field is done modulo the irreducible polynomial:
+A Galois Field is a field that contains a finite number of elements, denoted as
+\begin{equation}
+    GF(p^n)
+\end{equation}
+where $p$ is a prime number (the characteristic of the field), and $n \in \mathbb{N}$ (the degree of extension).
 
-\begin{align}
-    m(x) = x^8 + x^4 + x^3 + x + 1 \label{eq:irred-poly}
-\end{align}
+In the AES algorithm, $GF(2^8)$ is used as its elements are 8-bit binary numbers (ranging from 0 to 255), and it supports both addition and multiplication operations fundamental for the algorithm's transformations.
+The bytes can be interpreted as polynomial representation:
+\begin{equation}
+    b_7 x^7 + b_6 x^6 + b_5 x^5 + b_4 x^4 + b_3 x^3 + b_2 x^2 + b_1 x^1 = \sum_{i=0}^7 b_i x^i \text{ with } b_i \in \{0,1\}
+    \label{eq:gf2^8}
+\end{equation}.
 
-Each element corresponds to an 8-bit byte. Operations in the field include:
-\begin{itemize}
-    \item \textbf{Addition:} Performed as bitwise XOR
-    \item \textbf{Multiplication:} Polynomial multiplication modulo $m(x)$
-    \item \textbf{Inversion:} Found using the Extended Euclidean Algorithm
-\end{itemize}
-
-These operations are critical in the \Gls{AES} algorithm, particularly in transformations like \texttt{SubBytes} and \texttt{MixColumns}, which depend on the structure of $\mathrm{\Gls{GF}}(2^8)$ to ensure both security and performance.
 
 \subsubsection{Addition}
 \label{sec:addition}
@@ -68,9 +67,9 @@ This polynomial corresponds to the binary representation $(100011010)_{\text{bin
 The polynomial multiplication before modulo reduction is
 \[
 \begin{array}{ccl}
-    \overbrace{(x^6 + x^4 + x^2 + x^1 + 1)}^{(53)_{\text{hex}}} \bullet \overbrace{(x^7 + x + 1)}^{(83)_{\text{hex}}} \mod m(x) & = & \left(x^{13} + x^{11} + x^9 + x^8 + x^7\\
+    \overbrace{(x^6 + x^4 + x^2 + x^1 + 1)}^{(53)_{\text{hex}}} \bullet \overbrace{(x^7 + x + 1)}^{(83)_{\text{hex}}} \mod m(x) & = & (x^{13} + x^{11} + x^9 + x^8 + x^7\\
     && + x^7 + x^5 + x^3 + x^2 + x\\
-    && + x^6 + x^4 + x^2 + x + 1 \right) \mod m(x)
+    && + x^6 + x^4 + x^2 + x + 1 ) \mod m(x)
 \end{array}
 \]
 
@@ -101,21 +100,3 @@ Next, the modulo operation by the irreducible polynomial $m(x)$ is performed:
 The final result corresponds to the binary value $(11000001)_{\text{bin}} = (c1)_{\text{hex}}$.
 
 Thus, $(57)_{\text{hex}} \bullet (83)_{\text{hex}} = (c1)_{\text{hex}}$.
-
-
-% Because this operation can be computationally heavy, efficient implementations often use lookup tables or optimized routines like \texttt{xtime}, which simplifies multiplication by $x$.
-
-\subsubsection{Multiplication by \texorpdfstring{$x$}{x}}
-\label{sec:multx}
-
-Multiplying a byte by $x$ (equivalent to $\{02\}$) involves a left shift of the byte, with an additional XOR with $\{1b\}$ if the leftmost bit (most significant bit) is 1:
-
-\begin{align}
-    \text{xtime}(b) =
-    \begin{cases}
-    b \ll 1, & \text{if } b_7 = 0 \\
-    (b \ll 1) \oplus \{1b\}, & \text{if } b_7 = 1
-    \end{cases}
-\end{align}
-
-This allows for fast multiplication by $x$ modulo the \Gls{AES} irreducible polynomial.
