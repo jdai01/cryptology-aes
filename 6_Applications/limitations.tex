@@ -5,23 +5,20 @@ and effectiveness of cryptographic solutions.
 
 \subsubsection*{Key Management}
 
-No symmetric cipher, including AES, can guarantee security if key management practices are poor. The entire 
-method fundamentally depends on the secrecy, integrity, and lifecycle management of keys. Secure generation, 
-distribution, rotation, storage (often using physical security modules), and destruction are critical.
+No symmetric cipher, including AES, can guarantee security if key management practices are poor. 
+The entire method fundamentally depends on the secrecy, integrity, and lifecycle management of keys. 
+Secure generation, distribution, rotation, storage (often using physical security modules), and destruction are critical.
 
-Despite AES's mathematical strength, mistakes such as using weak keys, allowing key reuse, failing to rotate 
-compromised keys, or transmitting keys over insecure channels can undermine the confidentiality of encrypted data.
+Despite AES's mathematical strength, mistakes such as using weak keys, allowing key reuse, failing to rotate compromised keys, or transmitting keys over insecure channels can undermine the confidentiality of encrypted data.
 
 \subsubsection*{Implementation Vulnerabilities}
 
-AES's theoretical resilience is not immune to practical attacks targeting its real-world implementation. Side-channel 
-attacks, including timing analysis, cache behaviour exploitation, power consumption monitoring, and electromagnetic 
-radiation assessment, pose significant threats to the confidentiality of cryptographic key material. If the implementation 
-is not carefully handled, these attacks can effectively disclose sensitive information. Mitigating these risks requires 
-additional programming practices like constant-time implementations or mathematically secure curves.
+AES's theoretical resilience is not immune to practical attacks targeting its real-world implementation.
+Side-channel attacks, including timing analysis, cache behaviour exploitation, power consumption monitoring, and electromagnetic radiation assessment, pose significant threats to the confidentiality of cryptographic key material. 
+If the implementation is not carefully handled, these attacks can effectively disclose sensitive information. 
+Mitigating these risks requires additional programming practices like constant-time implementations or mathematically secure curves.
 
 \subsubsection*{Lack of Built-In Authentication}
-AES offers confidentiality, but it does not include a way to verify that the encrypted data hasn't been tampered 
-with. Data integrity and authenticity must be added using \Glspl{MAC} or by adopting combined authenticated encryption 
-modes like \Gls{GCM} or \Gls{CCM} \cite{rfc4494}. Neglecting to supplement basic AES with integrity checks can expose the system to forgery 
-and modification attacks.
+AES offers confidentiality, but it does not include a way to verify that the encrypted data hasn't been tampered with. 
+Data integrity and authenticity must be added using \Glspl{MAC} or by adopting combined authenticated encryption modes like \Gls{GCM} or \Gls{CCM} \cite{rfc4494}. 
+Neglecting to supplement basic AES with integrity checks can expose the system to forgery and modification attacks.
