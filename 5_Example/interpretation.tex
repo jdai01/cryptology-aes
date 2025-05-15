@@ -1,2 +1,22 @@
 \subsection{Results and Analysis}
 
+The AES implementation was tested using the script aes.py with a predefined key and plaintext input. 
+The parameters used for this test are detailed below:
+
+{\ttfamily
+\begin{tabular}{ll}
+    key: & 000102030405060708090a0b0c0d0e0f\\
+    plaintext: & 00112233445566778899aabbccddeeff
+\end{tabular}
+}
+
+Upon execution, the resulting ciphertext output was:
+
+{\ttfamily
+\begin{tabular}{ll}
+    ciphertext: & 69C4E0D86A7B0430D8CDB78070B4C55A
+\end{tabular}
+}
+
+This output matches the expected result defined in the official \gls{AES} specification published by the \gls{NIST} \cite{NIST_AES}.
+The consistency of this result validates the correctness of the \gls{AES} encryption implementation in \texttt{aes.py}.
