@@ -22,6 +22,6 @@ programming practices like constant-time implementations or mathematically secur
 
 \subsubsection*{Lack of Built-In Authentication}
 AES offers confidentiality, but it does not include a way to verify that the encrypted data hasn't been tampered 
-with. Data integrity and authenticity must be added using \Gls{MAC}s or by adopting combined authenticated encryption 
+with. Data integrity and authenticity must be added using \Glspl{MAC} or by adopting combined authenticated encryption 
 modes like \Gls{GCM} or \Gls{CCM} \cite{rfc4494}. Neglecting to supplement basic AES with integrity checks can expose the system to forgery 
 and modification attacks.
