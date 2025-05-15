@@ -2,22 +2,22 @@
 \label{sec:why}
 \label{sec:math}
 
+The 16-byte input $A_0, \dots, A_{15}$ is fed byte-wise into the S-Box in the Byte Substitution layer (Section \ref{sec:SubBytes}).
+The 16-byte output $B_0, \dots, B_{15}$ is permutated twice in the \textsc{ShiftRows} (Section \ref{sec:ShiftRows}) and mixed by the \textsc{MixColumn} transformation (Section \ref{sec:MixColumns}), both in the Diffusion layer.
+Finally, the 128-bit subkey $k_i$ is \texttt{XOR} with the immediate result in the Key Addition layer (Section \ref{sec:AddRoundKey}).
 Figure \ref{fig:aes-round-function} shows the graph of a single AES round. 
-The 16-byte input $A_0, \dots, A_{15}$ is fed byte-wise into the S-Box in the Byte Substitution Layer (Section \ref{sec:byte-substitution}).
-The 16-byte output $B_0, \dots, B_{15}$ is permutated twice in the \textsc{ShiftRows} layer and mixed by the \textsc{MixColumn} transformation, both in the Diffusion layer (Section \ref{sec:diffusion})
-Finally, the 128-bit subkey $k_i$ is XORed with the immediate result in the Key Addition layer (Section \ref{sec:key-addition}).
-
-The mathematical foundations discussed in subsequent subsections are based on the \gls{AES} specification published by \gls{NIST} \cite{NIST_AES} and the textbook by Paar and Pelzl \cite{Paar2024}.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=.9\textwidth]{aes-round-function.png}
+    \includegraphics[width=.8\textwidth]{aes-block-diagram.png}
     \caption{
-        AES round function for rounds $1, 2, \dots, n_r-1$ \cite{Paar2024}.
+        AES Encryption Block Diagram \cite{Paar2024}.
+        The plaintext is denoted as $x$, the ciphertext as $y$, key as $k$, and the number of rounds as $n_r$.
     }
-    \label{fig:aes-round-function}
+    \label{fig:aes-block-diagram}
 \end{figure}
 
+The mathematical foundations discussed in subsequent subsections are based on the \gls{AES} specification published by \gls{NIST} \cite{NIST_AES} and the textbook by Paar and Pelzl \cite{Paar2024}.
 
 \input{4_Why/basic-math.tex}
 \input{4_Why/SubBytes.tex}

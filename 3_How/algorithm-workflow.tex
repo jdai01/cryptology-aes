@@ -7,8 +7,7 @@ These layers introduce both \textit{confusion} and \textit{diffusion} to strengt
 The AES structure consists of the following layers \cite{Paar2024}:
 \begin{enumerate}
     \item \textbf{Key Addition Layer}:
-    A 128-bit round key is XORed with the state. 
-    % This adds the key information to the data at each round. 
+    A 128-bit round key is \texttt{XOR} with the state, with round key generated in Key Expansion (Section \ref{sec:key-expansion})
 
     \item \textbf{Byte Substitution Layer (S-Box)}:
     Each byte of the state is non-linearly transformed using lookup tables. 
@@ -28,7 +27,7 @@ The first round consists of the Key Addition layer.
 The final round omits the \textsc{MixColumn} transformation, making both encryption and decryption operations symmetric.
 Figure \ref{fig:aes-block-diagram} shows the block diagram of AES encryption.
 
-\begin{figure}[h]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=.8\textwidth]{aes-block-diagram.png} % Adjust width as needed
     \caption{
