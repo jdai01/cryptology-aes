@@ -4,10 +4,12 @@
 It processes these blocks in several rounds, with each round consisting of multiple layers that manipulate the data in specific ways. 
 These layers introduce both \textit{confusion} and \textit{diffusion} to strengthen the encryption.
 
+\subsubsection{Encryption process}
+
 The AES structure consists of the following layers \cite{Paar2024}:
 \begin{enumerate}
     \item \textbf{Key Addition Layer}:
-    A 128-bit round key is \texttt{XOR} with the state, with round key generated in Key Expansion (Section \ref{sec:key-expansion})
+    A 128-bit round key is \texttt{XOR} with the state, with round key generated in Key Expansion (Section~\ref{sec:key-expansion})
 
     \item \textbf{Byte Substitution Layer (S-Box)}:
     Each byte of the state is non-linearly transformed using lookup tables. 
@@ -36,3 +38,23 @@ Figure \ref{fig:aes-block-diagram} shows the block diagram of AES encryption.
     }
     \label{fig:aes-block-diagram}
 \end{figure}
+
+
+\subsubsection{Decryption process}
+\label{sec:decryption}
+
+AES decryption is the process of reversing encryption steps to retrieve the original plaintext from a given ciphertext. Since AES is a symmetric block cipher, it uses the same secret key for both encryption and decryption\cite{NIST_AES}.
+
+The input data is handled in 128-bit blocks and processed through multiple transformation rounds. 
+The number of rounds depends on the key size, as outlined in Table \ref{table:key-length-rounds}.
+
+To decrypt, AES performs the inverse of each encryption step, but in reverse order. These inverse operations are:
+
+\begin{enumerate}
+    \item \textbf{AddRoundKey}: This step XORs the block with the corresponding round key. Since XOR is its own inverse, this operation is identical in both encryption and decryption.
+    \item \textbf{InvShiftRows}: Reverses the row shifts that were applied during encryption.
+    \item \textbf{InvSubBytes}: Applies the inverse S-box substitution to each byte, undoing the non-linear transformation.
+    \item \textbf{InvMixColumns}: Reverses the mixing of bytes in each column. This step is skipped in the final round.
+\end{enumerate}
+
+Decryption starts by XORing the ciphertext with the final round key. Then, each round applies the inverse transformations using the appropriate round key from the key schedule. After all rounds are completed, the original plaintext is recovered.

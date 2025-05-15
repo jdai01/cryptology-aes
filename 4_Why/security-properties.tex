@@ -5,7 +5,7 @@ Each mode introduces distinct security implications,
 including confidentiality, error propagation, resistance to structural analysis, 
 and resilience against future threats such as quantum computing.
 
-\noindent The security of a mode depends not only on AES itself but also on how the blocks are processed. 
+The security of a mode depends not only on AES itself but also on how the blocks are processed. 
 For instance:
 
 \begin{itemize}
@@ -22,9 +22,9 @@ For instance:
 
 With the anticipated rise of quantum computing, 
 AES modes must also be evaluated under quantum threat models. 
-Grover’s algorithm reduces brute-force complexity from $2^k$ to approximately $2^{k/2}$. \newline
+Grover's algorithm reduces brute-force complexity from $2^k$ to approximately $2^{k/2}$. 
 
-Jang et al.\cite{Jang2025} present refined circuit depth and gate count estimates under realistic quantum constraints. 
+Jang et al. \cite{Jang2025} present refined circuit depth and gate count estimates under realistic quantum constraints. 
 Their study indicates the following effective quantum security levels:
 
 \begin{itemize}
@@ -34,10 +34,10 @@ Their study indicates the following effective quantum security levels:
 \end{itemize} 
 
 These values, derived using optimised Grover-based search circuits, 
-are well above the estimated practical capabilities of near-term quantum computers\cite{Jang2025}. \newline
+are well above the estimated practical capabilities of near-term quantum computers \cite{Jang2025}. 
 
 Importantly, parallelisable modes like CTR and XTS are more amenable to low-depth quantum circuit implementations. 
-Their compatibility with constraints such as NIST’s \texttt{MAXDEPTH} parameter makes them promising candidates for quantum-resilient applications\cite{Jang2025}.
+Their compatibility with constraints such as NIST's \texttt{MAXDEPTH} parameter makes them promising candidates for quantum-resilient applications \cite{Jang2025}.
 
 \begin{table}[h]
 \centering
@@ -47,8 +47,8 @@ Their compatibility with constraints such as NIST’s \texttt{MAXDEPTH} paramete
 \textbf{Mode} & \textbf{Parallel} & \textbf{Error Propagation} & \textbf{Random Access} & \textbf{Best Use Case} \\
 \hline
 \Gls{ECB} & Yes & None & Yes & Toy cases, testing only \\
-\Gls{CBC} & No (Enc) / Yes (Dec) & Yes(next block) & No & File encryption \\
-\Gls{CFB} & No & Yes(next block) & No & Streaming data with feedback \\
+\Gls{CBC} & No (Enc) / Yes (Dec) & Yes (next block) & No & File encryption \\
+\Gls{CFB} & No & Yes (next block) & No & Streaming data with feedback \\
 \Gls{OFB} & Yes & None & No & Resilient byte-wise streaming \\
 \Gls{CTR} & Yes & None & Yes & High-throughput systems \\
 \Gls{XTS} & Yes & None & Yes & Secure disk encryption \\

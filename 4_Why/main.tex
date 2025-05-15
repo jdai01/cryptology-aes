@@ -2,19 +2,18 @@
 \label{sec:why}
 \label{sec:math}
 
-The 16-byte input $A_0, \dots, A_{15}$ is fed byte-wise into the S-Box in the Byte Substitution layer (Section \ref{sec:SubBytes}).
-The 16-byte output $B_0, \dots, B_{15}$ is permutated twice in the \textsc{ShiftRows} (Section \ref{sec:ShiftRows}) and mixed by the \textsc{MixColumn} transformation (Section \ref{sec:MixColumns}), both in the Diffusion layer.
-Finally, the 128-bit subkey $k_i$ is \texttt{XOR} with the immediate result in the Key Addition layer (Section \ref{sec:AddRoundKey}).
-Figure \ref{fig:aes-round-function} shows the graph of a single AES round. 
+The 16-byte input $A_0, \dots, A_{15}$ is fed byte-wise into the S-Box in the Byte Substitution layer (Section~\ref{sec:SubBytes}).
+The 16-byte output $B_0, \dots, B_{15}$ is permutated twice in the \textsc{ShiftRows} (Section~\ref{sec:ShiftRows}) and mixed by the \textsc{MixColumn} transformation (Section~\ref{sec:MixColumns}), both in the Diffusion layer.
+Finally, the 128-bit subkey $k_i$ is \texttt{XOR} with the immediate result in the Key Addition layer (Section~\ref{sec:AddRoundKey}).
+Figure~\ref{fig:aes-round-function} shows the graph of a single AES round. 
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=.8\textwidth]{aes-block-diagram.png}
+    \includegraphics[width=\textwidth]{aes-round-function.png}
     \caption{
-        AES Encryption Block Diagram \cite{Paar2024}.
-        The plaintext is denoted as $x$, the ciphertext as $y$, key as $k$, and the number of rounds as $n_r$.
+        AES round function for rounds $1, 2, \dots, n_r-1$ \cite{Paar2024}.
     }
-    \label{fig:aes-block-diagram}
+    \label{fig:aes-round-function}
 \end{figure}
 
 The mathematical foundations discussed in subsequent subsections are based on the \gls{AES} specification published by \gls{NIST} \cite{NIST_AES} and the textbook by Paar and Pelzl \cite{Paar2024}.
